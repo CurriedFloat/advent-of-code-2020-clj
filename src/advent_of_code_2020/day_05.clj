@@ -45,3 +45,15 @@
     (map set)
     (apply s/intersection)
     first)
+
+;; part 2 (better)
+(defn eliminate [sorted-seats]
+  (let [all (set (range (first sorted-seats) 
+                        (last sorted-seats)))]
+    (first (s/difference all sorted-seats))))
+
+(->> input
+     (map find-seat)
+     (map seat-id)
+     (apply sorted-set)
+     eliminate)
