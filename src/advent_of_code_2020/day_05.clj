@@ -29,24 +29,6 @@
      (apply max))
 
 ;; part 2
-(def all-ids (apply sorted-set (range 1024)))
-
-(defn non-consecutive? [s]
-  (let [[a b] s]
-    (not= (+ 1 a) b)))
-
-(->> input
-    (map find-seat)
-    (map seat-id)
-    (apply sorted-set)
-    (s/difference all-ids)
-    (partition 2 1)
-    (filter non-consecutive?)
-    (map set)
-    (apply s/intersection)
-    first)
-
-;; part 2 (better)
 (defn eliminate [sorted-seats]
   (let [all (set (range (first sorted-seats) 
                         (last sorted-seats)))]
